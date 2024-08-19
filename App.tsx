@@ -5,9 +5,10 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useCallback, useState } from 'react';
+import type { PropsWithChildren } from 'react';
 import {
+  Dimensions,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -19,79 +20,76 @@ import {
 
 import {
   Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { FlashList } from "@shopify/flash-list";
+import Video from 'react-native-video';
+import VideoFeed from './src/component/VideoFeed';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
+const DATA = [
+  {
+    id:1,
+    title: "First Item",
+    src: require('./src/media/video1.mp4')
+  },
+  {
+    id:2,
+    title: "Second Item",
+    src: require('./src/media/video2.mp4')
+  },
+  {
+    id:3,
+    title: "Second Item",
+    src: require('./src/media/video3.mp4')
+  },
+  {
+    id:4,
+    title: "Second Item",
+    src: require('./src/media/video4.mp4')
+  },
+  {
+    id:5,
+    title: "Second Item",
+    src: require('./src/media/video5.mp4')
+  },
+  {
+    id:6,
+    title: "Second Item",
+    src: require('./src/media/video6.mp4')
+  },
+];
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+  const {height,width} = Dimensions.get('window');
+  const [scroll,setScroll] = useState('')
+  const [viewAbaleItem, setViewAbleItem] = useState(0);
+  console.log('scroll',scroll)
+  
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const onViewableItems = useCallback(({ viewableItems }) => {
+    console.log('viewableItems', viewableItems);
+    // if (currentPage / 2 < viewableItems[viewableItems.length - 1]?.index && currentPage>viewableItems[viewableItems.length - 1]?.index) {
+    //   if (!isEnd && !isCallingApi) {
+    //     setMoreFeedLoading(true);
+    //     isListScrolling = false;
+    //     getFeedItems(20)
+    //   }
+    // }
+    setViewAbleItem(viewableItems[0]?.index);
+  },[])
+  console.log('ViewableItems22',viewAbaleItem)
+
+  const onLayout = (itemId, event) => {
+    const { y, height } = event.nativeEvent.layout;
+    console.log('Onlayout',y,height)
+    //itemLayoutRefs.current[itemId] = { y, height };
   };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaView style={{ flex: 1 }}>
       <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+      <VideoFeed />
     </SafeAreaView>
   );
 }
