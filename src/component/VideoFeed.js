@@ -59,14 +59,7 @@ const VideoFeed = () => {
                             repeat
                         />
                         <Text>{item.title}</Text>
-                        <View style={styles.centeredItemContainer}>
-                            <Text>Playing Video ID:{target}</Text>
-                            {playingVideoId ? (
-                                <Text>{playingVideoId}</Text>
-                            ) : (
-                                <Text>No video playing{target}</Text>
-                            )}
-                        </View>
+                        
                     </View>
                 )}
                 keyExtractor={item => item.id}
@@ -81,12 +74,9 @@ const VideoFeed = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
     },
     item: {
         marginBottom: 20,
-        borderColor: 'red',
-        borderWidth: 2
     },
     video: {
         width: '100%',
