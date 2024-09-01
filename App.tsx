@@ -61,34 +61,8 @@ const DATA = [
 
 
 function App(): React.JSX.Element {
-  const {height,width} = Dimensions.get('window');
-  const [scroll,setScroll] = useState('')
-  const [viewAbaleItem, setViewAbleItem] = useState(0);
-  console.log('scroll',scroll)
-  
-
-  const onViewableItems = useCallback(({ viewableItems }) => {
-    console.log('viewableItems', viewableItems);
-    // if (currentPage / 2 < viewableItems[viewableItems.length - 1]?.index && currentPage>viewableItems[viewableItems.length - 1]?.index) {
-    //   if (!isEnd && !isCallingApi) {
-    //     setMoreFeedLoading(true);
-    //     isListScrolling = false;
-    //     getFeedItems(20)
-    //   }
-    // }
-    setViewAbleItem(viewableItems[0]?.index);
-  },[])
-  console.log('ViewableItems22',viewAbaleItem)
-
-  const onLayout = (itemId, event) => {
-    const { y, height } = event.nativeEvent.layout;
-    console.log('Onlayout',y,height)
-    //itemLayoutRefs.current[itemId] = { y, height };
-  };
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar
-      />
       <VideoFeed />
     </SafeAreaView>
   );
