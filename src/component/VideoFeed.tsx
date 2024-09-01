@@ -7,10 +7,11 @@ import ItemRenderer from './ItemRenderer';
 
 const { height: screenHeight } = Dimensions.get('window');
 type UserType = {
-    name:string
+    name:string,
+    image:string|undefined
 }
-type ItemType = {
-    id: string,
+export type ItemType = {
+    id: number,
     user: UserType,
     title: string,
     src: string,
@@ -20,8 +21,8 @@ type ItemType = {
 }
 
 const VideoFeed = () => {
-    const [playingVideoId, setPlayingVideoId] = useState<string|null>('');
-    const itemLayoutRefs = useRef<(string|null)[]>(['']);
+    const [playingVideoId, setPlayingVideoId] = useState<number|null>();
+    const itemLayoutRefs = useRef<({y:number,height:number}[])>([]);
 
     // Callback to handle changes in visible items
     const onViewableItemsChanged = useCallback(({ viewableItems }:{
@@ -52,7 +53,7 @@ const VideoFeed = () => {
     };
 
     // Store the layout of each item
-    const onLayout = (itemId:string, event:LayoutChangeEvent) => {
+    const onLayout = (itemId:number, event:LayoutChangeEvent) => {
         const { y, height } = event.nativeEvent.layout;
         itemLayoutRefs.current[itemId] = { y, height };
     };
@@ -70,7 +71,7 @@ const VideoFeed = () => {
                         <ItemRenderer item={item} playingVideoId={playingVideoId} />
                     </View>
                 )}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 onViewableItemsChanged={onViewableItemsChanged}
                 viewabilityConfig={{ itemVisiblePercentThreshold: 50 }}
             />
@@ -98,52 +99,58 @@ const styles = StyleSheet.create({
 // Sample data with video URLs
 const DATA = [
     {
-        id: '1',
-        user: { name: 'Nahid Hossain' },
-        title: "Rainy Day | 2024 | trending",
+        id: 1,
+        user: { name: 'Nahid Hossain',image:'' },
+        title: "Rainy Day | 2024 | trending ddfdfdf dfdfdfd dfdfdfd dfdfd",
         src: require('../media/video1.mp4'),
         createdAt: '',
-        views: 500
+        views: 500,
+        distance:0,
     },
     {
-        id: '1',
-        user: { name: 'Nahid Hossain' },
+        id: 2,
+        user: { name: 'Nahid Hossain',image:'' },
         title: "Rainy Day | 2024 | trending",
         src: require('../media/video2.mp4'),
         createdAt: '',
-        views: 500
+        views: 500,
+        distance:0
     },
     {
-        id: '1',
-        user: { name: 'Nahid Hossain' },
+        id: 3,
+        user: { name: 'Nahid Hossain',image:'' },
         title: "Rainy Day | 2024 | trending",
         src: require('../media/video3.mp4'),
         createdAt: '',
-        views: 500
+        views: 500,
+        distance:0
     },
     {
-        id: '1',
-        user: { name: 'Nahid Hossain' },
+        id: 4,
+        user: { name: 'Nahid Hossain',image:'' },
         title: "Rainy Day | 2024 | trending",
         src: require('../media/video4.mp4'),
         createdAt: '',
-        views: 500
+        views: 500,
+        distance:0
     },
     {
-        id: '1',
-        user: { name: 'Nahid Hossain' },
+        id: 5,
+        user: { name: 'Nahid Hossain',image:'' },
         title: "Rainy Day | 2024 | trending",
         src: require('../media/video5.mp4'),
         createdAt: '',
-        views: 500
+        views: 500,
+        distance:0
     },
     {
-        id: '1',
-        user: { name: 'Nahid Hossain' },
+        id: 6,
+        user: { name: 'Nahid Hossain',image:'' },
         title: "Rainy Day | 2024 | trending",
         src: require('../media/video6.mp4'),
         createdAt: '',
-        views: 500
+        views: 500,
+        distance:0
     },
    
 ];

@@ -25,41 +25,6 @@ import { FlashList } from "@shopify/flash-list";
 import Video from 'react-native-video';
 import VideoFeed from './src/component/VideoFeed';
 
-const DATA = [
-  {
-    id:1,
-    title: "First Item",
-    src: require('./src/media/video1.mp4')
-  },
-  {
-    id:2,
-    title: "Second Item",
-    src: require('./src/media/video2.mp4')
-  },
-  {
-    id:3,
-    title: "Second Item",
-    src: require('./src/media/video3.mp4')
-  },
-  {
-    id:4,
-    title: "Second Item",
-    src: require('./src/media/video4.mp4')
-  },
-  {
-    id:5,
-    title: "Second Item",
-    src: require('./src/media/video5.mp4')
-  },
-  {
-    id:6,
-    title: "Second Item",
-    src: require('./src/media/video6.mp4')
-  },
-];
-
-
-
 function App(): React.JSX.Element {
   return (
     <SafeAreaView style={{ flex: 1 }}>

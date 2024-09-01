@@ -1,29 +1,32 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import Video from 'react-native-video'
+import { ItemType } from './VideoFeed'
 
-export default function VideoPlayer({item,playingVideoId}) {
+type VideoPlayerPropsType = {
+    item: ItemType,
+    playingVideoId: number | null | undefined
+}
+
+export default function VideoPlayer({ item, playingVideoId }: VideoPlayerPropsType) {
     return (
         <View
-            style={styles.item}
+            style={styles.Container}
         >
-
             <Video
-                source={item.src}
+                source={{ uri: item.src }}
                 style={styles.video}
                 paused={item.id !== playingVideoId} // Autoplay if videoId matches
-                resizeMode="cover"
                 repeat
+                resizeMode='cover'
             />
-            <Text>{item.title}</Text>
-
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    item: {
-        marginBottom: 20,
+    Container: {
+        flex: 1,
     },
     video: {
         width: '100%',

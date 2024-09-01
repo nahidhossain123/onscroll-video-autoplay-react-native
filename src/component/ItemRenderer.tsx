@@ -1,13 +1,25 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 import VideoPlayer from './VideoPlayer'
 import VideoDetails from './VideoDetails'
+import { ItemType } from './VideoFeed'
 
-export default function ItemRenderer({item,playingVideoId}) {
+type RenderItemType = {
+  item:ItemType,
+  playingVideoId:number|null|undefined
+}
+
+export default function ItemRenderer({item,playingVideoId}:RenderItemType) {
   return (
     <View>
+      <View style={{}}>
       <VideoPlayer item={item} playingVideoId={playingVideoId} />
-      <VideoDetails />
+      </View>
+      <VideoDetails item={item} />
     </View>
   )
 }
+
+const style = StyleSheet.create({
+  
+})

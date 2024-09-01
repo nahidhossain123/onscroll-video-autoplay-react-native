@@ -1,8 +1,13 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { getNameInitials } from '../utils/CommonFunctions';
+import { ItemType } from './VideoFeed';
 
-export default function Avatar({ item }) {
+type AvatarType={
+  item:ItemType
+}
+
+export default function Avatar({ item }:AvatarType) {
   const nameInittials = getNameInitials(item.user.name);
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -23,9 +28,6 @@ export default function Avatar({ item }) {
           </Text>
         )}
       </View>
-      {item.isName && (
-        <Text style={{ color: '#000', marginLeft: 10 }}>{item.user.name}</Text>
-      )}
     </View>
   )
 }
