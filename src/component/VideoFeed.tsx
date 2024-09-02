@@ -64,7 +64,7 @@ const VideoFeed = () => {
             />
             <FlashList
                 data={DATA}
-                estimatedItemSize={400}
+                estimatedItemSize={500}
                 extraData={playingVideoId}
                 renderItem={({ item, index, target, extraData }) => (
                     <View onLayout={(event) => onLayout(item.id, event)}>

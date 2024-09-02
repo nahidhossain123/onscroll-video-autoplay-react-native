@@ -18,7 +18,7 @@ export default function VideoPlayer({ item, playingVideoId }: VideoPlayerPropsTy
                 style={styles.video}
                 paused={item.id !== playingVideoId} // Autoplay if videoId matches
                 repeat
-                resizeMode='cover'
+                resizeMode='stretch'
             />
         </View>
     )
