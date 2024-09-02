@@ -4,6 +4,7 @@ import { FlashList } from '@shopify/flash-list';
 import Video from 'react-native-video';
 import VideoPlayer from './VideoPlayer';
 import ItemRenderer from './ItemRenderer';
+import FeedEnd from './FeedEnd';
 
 const { height: screenHeight } = Dimensions.get('window');
 type UserType = {
@@ -74,6 +75,7 @@ const VideoFeed = () => {
                 keyExtractor={item => item.id.toString()}
                 onViewableItemsChanged={onViewableItemsChanged}
                 viewabilityConfig={{ itemVisiblePercentThreshold: 50 }}
+                ListFooterComponent={FeedEnd}
             />
 
         </View>
