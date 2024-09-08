@@ -12,8 +12,8 @@ type RenderItemType = {
 export default function ItemRenderer({item,playingVideoId}:RenderItemType) {
   return (
     <View>
-      <View style={{}}>
-      <VideoPlayer item={item} playingVideoId={playingVideoId} />
+      <View style={{height: 400,}}>
+      {/* <VideoPlayer item={item} playingVideoId={playingVideoId} /> */}
       </View>
       <VideoDetails item={item} />
     </View>

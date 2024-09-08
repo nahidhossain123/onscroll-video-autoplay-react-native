@@ -11,7 +11,7 @@ export default function FeedEnd() {
 
 const style = StyleSheet.create({
     container:{
-        paddingTop:20,
+        marginTop:100,
         paddingBottom:40
     },
     description:{
