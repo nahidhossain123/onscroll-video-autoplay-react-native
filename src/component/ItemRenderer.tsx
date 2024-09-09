@@ -13,7 +13,7 @@ export default function ItemRenderer({item,playingVideoId}:RenderItemType) {
   return (
     <View>
       <View style={{height: 400,}}>
-      {/* <VideoPlayer item={item} playingVideoId={playingVideoId} /> */}
+      <VideoPlayer item={item} playingVideoId={playingVideoId} />
       </View>
       <VideoDetails item={item} />
     </View>
